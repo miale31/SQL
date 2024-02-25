@@ -18,6 +18,18 @@ where city like 'A%' or city like 'E%' or city like 'I%' or city like 'O%' or ci
 select distinct city from station
 where city like '%a' or city like '%e' or city like '%i' or city like '%o' or city like '%u';
 
+-- Excercise 6
+select distinct city from station
+where not (city like 'a%' or city like 'e%' or city like 'i%' or city like 'o%' or city like 'u%'); 
+
+-- Excercise 7
+select name from Employee
+order by name;
+
+
+
+
+
 
 
 
