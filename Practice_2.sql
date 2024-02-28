@@ -1,10 +1,12 @@
 -- Excercise 1
 select distinct city from station
 where id%2=0;
+
 -- Excercise 2
 select count(city) - count(distinct city) from station;
 
 -- Excercise 3
+
 
 -- Excercise 4
 SELECT round(cast(sum (item_count * order_occurrences)/ sum (order_occurrences) as decimal),1) as mean FROM items_per_order;
@@ -27,6 +29,12 @@ HAVING
 COUNT(USER_ID) >=2;
 
 -- Excercise 7
+SELECT 
+card_name,
+max(ISSUED_AMOUNT) - MIN(ISSUED_AMOUNT) AS DIFFERENCE
+FROM monthly_cards_issued
+group by card_name
+ORDER BY DIFFERENCE DESC;
 
 -- Excercise 8
 SELECT
