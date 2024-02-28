@@ -16,6 +16,16 @@ GROUP BY candidate_id
 HAVING COUNT(skill) = 3;
 
 -- Excercise 6
+SELECT
+  USER_ID,
+  DATE(MAX(post_date)) - DATE(MIN(post_date)) AS days_between
+FROM posts
+WHERE
+  post_date BETWEEN '01/01/2021' AND '01/01/2022'
+GROUP BY USER_ID
+HAVING
+COUNT(USER_ID) >=2;
+
 -- Excercise 7
 
 -- Excercise 8
