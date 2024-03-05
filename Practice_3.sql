@@ -1,3 +1,13 @@
+-- Excercise 1
+select
+name
+from students
+where marks >75
+order by right(name,3), ID;
+
+-- Excercise 2
+
+
 --Excercise 3
 SELECT
 manufacturer,
