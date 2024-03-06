@@ -47,5 +47,13 @@ from activity
 where activity_date between ('2019-06-28') and ('2019-07-27')
 group by activity_date;
 
+-- Excercise 8
+select 
+count(id) as no_employee
+from employees
+where (extract(year from joining_date)) = 2022
+and (extract(month from joining_date)) between 1 and 7;
+
+
 
 
