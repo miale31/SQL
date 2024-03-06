@@ -54,6 +54,22 @@ from employees
 where (extract(year from joining_date)) = 2022
 and (extract(month from joining_date)) between 1 and 7;
 
+--Excercise 9
+select
+position ('a' in first_name) as position
+from worker
+where first_name = 'Amitah';
+
+-- Excercise 10
+select
+winery,
+(substring(title from (position('2' in title)) for 4)) as year
+from winemag_p2
+where country = 'Macedonia';
+
+
+
+
 
 
 
