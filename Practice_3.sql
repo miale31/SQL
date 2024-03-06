@@ -5,8 +5,19 @@ from students
 where marks >75
 order by right(name,3), ID;
 
--- Excercise 2
+-- Excercise 2 - using || for concatenate (result return 0)
+SELECT
+    user_id,
+    UPPER(LEFT(name, 1)) || (lower(right(name,length(name)-1)))  AS name
+FROM Users
+ORDER BY user_id;
 
+-- Excercise 2 - using CONCAT
+SELECT
+    user_id,
+    CONCAT(UPPER(LEFT(name, 1)),(lower(right(name,length(name)-1)) )) AS name
+FROM Users
+order by user_id;
 
 --Excercise 3
 SELECT
