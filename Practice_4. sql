@@ -13,7 +13,7 @@ then 'Yes' else 'No'
 end as 'triangle'
  from triangle;
 
--- Excercise 3
+-- Excercise 3 -- no data display trong excercise
 SELECT
 round(100*(sum(case when (call_category is null) or (call_category = 'n/a') then 1
 end))/
