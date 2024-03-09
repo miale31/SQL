@@ -12,6 +12,9 @@ FROM emails
 left join texts on emails.email_id = texts.email_id;
 
 --Excercise 3
+
+
+--Excercise 4
 SELECT
   customer_contracts.customer_id
 FROM 
@@ -23,7 +26,6 @@ group by
 having 
   count(DISTINCT products.product_category) = 3;
 
---Excercise 4
 --Excercise 5
 --Excercise 6
 --Excercise 7
