@@ -37,4 +37,19 @@ left join employees as man on emp.reports_to = man.employee_id
 having count(man.name) >= 2;
 
 --Excercise 6
+SELECT 
+    products.product_name,
+    SUM(orders.unit) AS unit
+FROM 
+    Products
+LEFT JOIN 
+    Orders ON products.product_id = orders.product_id
+WHERE 
+    (EXTRACT(MONTH FROM orders.order_date)) = 2
+GROUP BY 
+    products.product_name, EXTRACT(MONTH FROM orders.order_date)
+HAVING
+    SUM(orders.unit) >= 100
+;
+
 --Excercise 7
