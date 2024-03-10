@@ -27,5 +27,14 @@ having
   count(DISTINCT products.product_category) = 3;
 
 --Excercise 5
+select 
+    emp.employee_id, 
+    emp.name as name,
+    count(emp.reports_to) as reports_count,
+    round(avg(emp.age),0) as average_age
+from employees as emp
+left join employees as man on emp.reports_to = man.employee_id
+having count(man.name) >= 2;
+
 --Excercise 6
 --Excercise 7
