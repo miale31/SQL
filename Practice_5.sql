@@ -53,3 +53,13 @@ HAVING
 ;
 
 --Excercise 7
+SELECT 
+  pages.page_id
+FROM pages
+LEFT JOIN
+  page_likes as likes
+ON
+  pages.page_id = likes.page_id
+group by pages.page_id
+having count(likes.liked_date)=0
+order by pages.page_id;
