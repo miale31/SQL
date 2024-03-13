@@ -67,7 +67,7 @@ FROM likes
 WHERE no_likes is NULL
 ORDER BY page_id;
 
--- Excercise 5
+-- Excercise 6
 # Write your MySQL query statement below
 
 select 
@@ -80,7 +80,7 @@ select
 from transactions
 ;
 
--- Exercise 6
+-- Exercise 7
 SELECT
     sales.product_id,
     sales.year AS first_year,
