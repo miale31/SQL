@@ -80,3 +80,21 @@ select
 from transactions
 ;
 
+-- Exercise 6
+SELECT
+    sales.product_id,
+    sales.year AS first_year,
+    SUM(sales.quantity) AS quantity,
+    SUM(sales.price) AS price
+FROM
+    sales
+JOIN
+    (SELECT product_id, MIN(year) AS min_year
+     FROM sales
+     GROUP BY product_id) AS subquery
+ON
+    sales.product_id = subquery.product_id
+    AND sales.year = subquery.min_year
+GROUP BY
+    sales.product_id;
+
