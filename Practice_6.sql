@@ -53,3 +53,19 @@ WITH call_count AS
 SELECT 
   COUNT(policy_holder_id)
 FROM call_count;
+
+-- Excercise 4
+WITH likes AS
+  (SELECT 
+    DISTINCT page_id,
+    count(liked_date) as no_likes
+  FROM page_likes
+  GROUP BY page_id)
+SELECT
+  page_id
+FROM likes
+WHERE no_likes is NULL
+ORDER BY page_id;
+
+-- Excercise 5
+
