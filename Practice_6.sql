@@ -98,3 +98,91 @@ ON
 GROUP BY
     sales.product_id;
 
+-- Excercise 8
+select 
+    customer_id
+ from customer
+group by customer_id
+having count(distinct(product_key)) = 
+    (select count(*) from product);
+
+-- Excercise 9
+select employee_id
+from employees
+where (salary <30000) and (manager_id not in (select employee_id from employees))
+order by employee_id;
+
+-- Excercise 10
+select 
+  COUNT(*) as duplicate_companies
+FROM (SELECT
+company_id, 
+title,
+description,
+count(job_id)
+FROM job_listings
+group by company_id, title, description
+HAVING count(job_id)=2) AS SUBQUERIES
+
+;
+-- Excercise 11
+WITH max_user_ratings AS (
+    SELECT
+        user_id,
+        COUNT(movie_id) AS movie_count
+    FROM
+        movierating
+    GROUP BY
+        user_id
+    HAVING
+        COUNT(movie_id) = (
+            SELECT MAX(movie_count)
+            FROM (
+                SELECT COUNT(movie_id) AS movie_count
+                FROM movierating
+                GROUP BY user_id
+            ) AS max_counts
+        )
+), max_movie_ratings AS (
+    SELECT
+        movie_id,
+        AVG(rating) AS movie_rate
+    FROM
+        movierating
+    WHERE
+        EXTRACT(MONTH FROM created_at) = 2 AND EXTRACT(YEAR FROM created_at) = 2020
+    GROUP BY
+        movie_id
+    HAVING
+        AVG(rating) = (
+            SELECT MAX(movie_rate)
+            FROM (
+                SELECT
+                    AVG(rating) AS movie_rate
+                FROM
+                    movierating
+                WHERE
+                    EXTRACT(MONTH FROM created_at) = 2 AND EXTRACT(YEAR FROM created_at) = 2020
+                GROUP BY
+                    movie_id
+            ) AS max_movie_rates
+        )
+)
+(SELECT
+    users.name AS results
+FROM
+    max_user_ratings
+JOIN
+    users ON users.user_id = max_user_ratings.user_id
+LIMIT 1)
+UNION
+(SELECT
+    movies.title AS results
+FROM
+    max_movie_ratings
+JOIN
+    movies ON movies.movie_id = max_movie_ratings.movie_id
+LIMIT 1)
+;
+
+-- Excercise 12
