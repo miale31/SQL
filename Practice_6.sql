@@ -67,9 +67,22 @@ FROM likes
 WHERE no_likes is NULL
 ORDER BY page_id;
 
--- Excercise 6
-# Write your MySQL query statement below
+-- Excercise 5
+SELECT 
+  EXTRACT(MONTH FROM event_date) AS month,
+  COUNT(DISTINCT user_id) AS monthly_active_users
+FROM 
+  user_actions
+WHERE 
+  EXTRACT(MONTH FROM event_date) = 7
+  AND EXTRACT(YEAR FROM event_date) = 2022
+GROUP BY 
+  EXTRACT(MONTH FROM event_date)
+HAVING 
+  COUNT(DISTINCT user_id) >= 2;
 
+
+-- Excercise 6
 select 
     DATE_FORMAT(trans_date, '%Y-%m') as 'month',
     country,
@@ -186,3 +199,13 @@ LIMIT 1)
 ;
 
 -- Excercise 12
+with a as
+(select requester_id as id from requestaccepted
+union all
+select accepter_id as id from requestaccepted)
+
+select id, count(id) as num
+from a
+group by id
+order by num desc
+limit 1
